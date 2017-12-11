@@ -1,0 +1,66 @@
+<div class="thumbnail">
+  <img src="http://placehold.it/820x230" alt="">
+  <div>
+    <h4 class="pull-right">{{product?.price}}元</h4>
+    <h4>{{product?.title}}</h4>
+    <p>{{product?.desc}}</p>
+  </div>
+  <div>
+    <p class="pull-right">共有{{comments?.length}}条评价</p>
+    <p>
+      <app-stars
+        [rating]="product?.rating|number:'1.1-1'"></app-stars>
+    </p>
+  </div>
+</div>
+
+<!--<div class="thumbnail">-->
+  <!--<button class="btn btn-default btn-lg"-->
+          <!--[class.active]="isWatched"-->
+          <!--(click)="watchProductId()">-->
+    <!--{{isWatched?"取消关注":"关注"}}-->
+  <!--</button>-->
+  <!--<label>最新出价:{{currentBid|number:'.2-2'}}元</label>-->
+<!--</div>-->
+
+<div class="well">
+  <div>
+    <button class="btn btn-success"
+            (click)="isCommentHidden=!isCommentHidden">发表评论</button>
+  </div>
+  <div [hidden]="isCommentHidden">
+    <div>
+      <app-stars [readOnly]="false"
+                 [(rating)]="newRating"
+                 ></app-stars>
+    </div>
+    <div>
+      <textarea [(ngModel)]="newComment">
+      </textarea>
+      <!--<span>-->
+        <!--{{newComment}}-->
+      <!--</span>-->
+      <div>
+        <button class="btn"
+                (click)="addComment()">提交评论
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngFor="let comment of comments">
+    <hr>
+    <div class="col-md-12">
+      <div class="clearfix">
+        <p class="pull-left">{{comment.content}}</p>
+        <div class="pull-right">
+          <app-stars [rating]="comment.rating"></app-stars>
+        </div>
+      </div>
+      <div class="clearfix">
+        <span>用户名: {{comment.user}}</span>
+        <span class="pull-right">评论时间: {{comment.timestam}}</span>
+        <p>{{comment.desc}}</p>
+      </div>
+    </div>
+  </div>
+</div>

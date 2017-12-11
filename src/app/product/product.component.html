@@ -1,0 +1,23 @@
+<div class="row">
+  <!--<div class="col-md-12">-->
+    <!--<div class="form-group">-->
+      <!--<input type="text" class="form-control"-->
+             <!--placeholder="请输入商品名称" [formControl]="titleFilter">-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="col-sm-6 col-md-4"
+       *ngFor="let product of products|async">
+    <div class="thumbnail">
+      <img [src]="imgUrl" alt="">
+      <div class="caption">
+        <h4 class="pull-right">{{product.price}}元</h4>
+        <h4><a [routerLink]="['/product',product.id]">
+          {{product.title}}</a></h4>
+        <p>{{product.desc}}</p>
+      </div>
+      <div class="stars">
+        <app-stars [rating]="product.rating"></app-stars>
+      </div>
+    </div>
+  </div>
+</div>
